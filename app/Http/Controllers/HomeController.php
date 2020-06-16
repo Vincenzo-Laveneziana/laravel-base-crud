@@ -31,7 +31,7 @@ class HomeController extends Controller
         //$students[] = Student::find(2);
         $students = Student::all();
         $student = $students->find(2);
-        dd($student->name);
+        //dd($student->name);
 
 
         return view('welcome', compact('students'));
