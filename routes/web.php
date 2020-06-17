@@ -14,3 +14,6 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', 'HomeController@index')->name('home');
+
+//reparti
+Route::resource('departments', 'DepartmentController');

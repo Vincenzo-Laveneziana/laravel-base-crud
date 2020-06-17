@@ -3,9 +3,9 @@
 @section('content')
     
 
-    <section class="products">
-        <h2 class="text-center m-5">Product link</h2>
-        <table class="table">
+    <section class="products d-flex flex-column align-items-center">
+        <h2 class="m-5">Product link</h2>
+        <table class="table col-10">
             <thead>
                 <tr>
                     <th>Immagine</th>
@@ -18,7 +18,7 @@
             <tbody>
                 @foreach ($products as $product)
                     <tr>
-                        <td><img class="img-fluid w-25 p-2" src="{{ $product->img }}" alt="{{ $product->nome }}"></td>
+                        <td><img style="width: 50px" src="{{ $product->img }}" alt="{{ $product->nome }}"></td>
                         <td class="align-middle">{{ $product->marca }}</td>
                         <td class="align-middle">{{ $product->nome }}</td>
                         <td class="align-middle">{{ $product->genere }}</td>
