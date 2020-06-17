@@ -4,6 +4,14 @@
     
     <h2 class="m-5">Crea un nuovo reparto</h2>
 
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </div>
+    @endif
+
     <form class="m-5" action="{{route('departments.store')}}" method="POST">
         
         @csrf

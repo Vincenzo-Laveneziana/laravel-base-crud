@@ -19,7 +19,7 @@
                 <tr>
                     <td>{{$department->id}}</td>
                     <td>{{$department->name}}</td>
-                    <td>Show</td>
+                    <td><a class="btn btn-success btn-sm" href="{{route('departments.show', $department->id)}}">Show</a></td>
                     <td>Update</td>
                     <td>Delete</td>
                 </tr>

@@ -41,13 +41,22 @@ class DepartmentController extends Controller
         $data = $request->all();
 
         //validation
+        $request->validate([
+            'name' => 'required|unique:departments|max:25',
+            'descrizione' => 'required'
+        ]);
 
         //save new department on database
         $department = new Department();
         $department->name = $data['name'];
         $department->descrizione = $data['descrizione'];
         $saved = $department->save();
-        dd($saved);
+        //dd($saved);
+
+        if ($saved) {
+            $newDepartment = Department::find($department->id);
+            return redirect()->route('departments.show', $newDepartment);
+        }
     }
 
     /**
@@ -56,9 +65,9 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Department $department)
     {
-        //
+        return view('departments.show', compact('department'));
     }
 
     /**
