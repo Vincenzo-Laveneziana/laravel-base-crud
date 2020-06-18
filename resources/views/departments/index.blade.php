@@ -19,8 +19,12 @@
                 <tr>
                     <td>{{$department->id}}</td>
                     <td>{{$department->name}}</td>
-                    <td><a class="btn btn-success btn-sm" href="{{route('departments.show', $department->id)}}">Show</a></td>
-                    <td>Update</td>
+                    <td>
+                        <a class="btn btn-success btn-sm" href="{{route('departments.show', $department->id)}}">Show</a>
+                    </td>
+                    <td>
+                        <a class="btn btn-primary btn-sm" href="{{route('departments.edit', $department->id)}}">Edit</a>
+                    </td>
                     <td>Delete</td>
                 </tr>
                 @endforeach

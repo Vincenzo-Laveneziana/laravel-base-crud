@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Department;
+use Illuminate\Validation\Rule;
 
 class DepartmentController extends Controller
 {
@@ -41,15 +42,13 @@ class DepartmentController extends Controller
         $data = $request->all();
 
         //validation
-        $request->validate([
-            'name' => 'required|unique:departments|max:25',
-            'descrizione' => 'required'
-        ]);
+        $request->validate($this->validationRules());
 
         //save new department on database
         $department = new Department();
-        $department->name = $data['name'];
-        $department->descrizione = $data['descrizione'];
+        /* $department->name = $data['name'];
+        $department->descrizione = $data['descrizione']; */
+        $department->fill($data);
         $saved = $department->save();
         //dd($saved);
 
@@ -76,9 +75,10 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Department $department)
     {
-        //
+        //$department = Department::find($id);
+        return view('departments.edit', compact('department'));
     }
 
     /**
@@ -88,9 +88,17 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Department $department)
     {
-        //
+        $data = $request->all();
+        //validation
+        $request->validate($this->validationRules($department->id));
+        //dd($data);
+        $update = $department->update($data);
+
+        if ($update) {
+            return redirect()->route('departments.show', $department->id);
+        }
     }
 
     /**
@@ -102,5 +110,21 @@ class DepartmentController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+
+    /* 
+        Define validation rules
+    */
+    private function validationRules($id = null){
+        return [
+            'name' => [
+            'required',
+            'max:20',
+            Rule::unique('departments')->ignore($id),
+            ],
+
+            'descrizione' => 'required'
+        ];
     }
 }
