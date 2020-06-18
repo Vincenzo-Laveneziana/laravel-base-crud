@@ -107,9 +107,16 @@ class DepartmentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Department $department)
     {
-        //
+        $ref = $department->name;
+        $deleted = $department->delete();
+
+        //redirect with session data
+
+        if ($deleted) {
+            return redirect()->route('departments.index')->with('deleted', $ref);
+        }
     }
 
 

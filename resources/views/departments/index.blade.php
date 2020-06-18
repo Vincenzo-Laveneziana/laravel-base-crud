@@ -1,6 +1,12 @@
 @extends('layouts.main')
 
 @section('content')
+
+    @if (session('deleted'))
+        <div class="alert alert-success mt-3">
+            {{session('deleted')}} Eliminato con successo
+        </div>
+    @endif
     
     <section class="reparti d-flex flex-column align-items-center">
         <h2 class="m-5">Reparti</h2>
@@ -25,7 +31,14 @@
                     <td>
                         <a class="btn btn-primary btn-sm" href="{{route('departments.edit', $department->id)}}">Edit</a>
                     </td>
-                    <td>Delete</td>
+                    <td>
+                        <form action="{{route('departments.destroy', $department->id)}}" method="POST">
+                            @csrf
+                            @method('DELETE')
+
+                            <input class="btn btn-danger btn-sm" type="submit" value="Delete">
+                        </form>
+                    </td>
                 </tr>
                 @endforeach
                               
