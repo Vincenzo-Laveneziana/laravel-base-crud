@@ -22,7 +22,7 @@
             <input type="text" class="form-control" value="{{ old('name', $department->name) }}" name="name" id="name" placeholder="Nome reparto">
         </div>
 
-        <div class="form-group">
+        <div class="form-group">         
             <label for="descrizione">Descrizione *</label>
             <input type="text" class="form-control" value="{{ old('descrizione', $department->descrizione) }}" name="descrizione" id="descrizione" placeholder="Descrizione del reparto">
         </div>
