@@ -1,10 +1,9 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use App\Worker;
+use App\Client;
 use Faker\Generator as Faker;
-
-class WorkersTableSeed extends Seeder
+class ClientsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -13,7 +12,7 @@ class WorkersTableSeed extends Seeder
      */
     public function run(Faker $faker)
     {
-        Worker::truncate();
+        Client::truncate();
 
         //Faker data
         $records = 10;
@@ -22,14 +21,14 @@ class WorkersTableSeed extends Seeder
             //random generate
             $gender = $faker->randomElement(['male', 'female']);
             $genderShort = ($gender == 'male') ? 'm' : 'f';
-            $newWorker = new Worker();
+            $newClient = new Client();
 
-            $newWorker->name = $faker->name($gender);
-            $newWorker->gender = $genderShort;
-            $newWorker->description = $faker->paragraph(3,true);
-            $newWorker->age = $faker->numberBetween(18, 65);
+            $newClient->name = $faker->name($gender);
+            $newClient->gender = $genderShort;
+            $newClient->description = $faker->paragraph(3,true);
+            $newClient->age = $faker->numberBetween(18, 65);
 
-            $newWorker->save();
+            $newClient->save();
         }
     }
 }
