@@ -20,7 +20,10 @@
                     <a class="nav-link" href="{{route('departments.index')}}">Reparti</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route('departments.create')}}">Aggiungi Reparto</a>
+                    <a class="nav-link" href="{{route('workers.index')}}">Dipendenti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route('departments.index')}}">Clienti</a>
                 </li>
             </ul>
         </nav>

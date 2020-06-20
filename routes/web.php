@@ -17,3 +17,6 @@ Route::get('/', 'HomeController@index')->name('home');
 
 //reparti
 Route::resource('departments', 'DepartmentController');
+
+//reparti
+Route::resource('workers', 'WorkerController');

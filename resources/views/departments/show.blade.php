@@ -16,4 +16,5 @@
         <li class="list-group-item">
             Update at: {{$department->updated_at}}
         </li>
+    </ul>
 @endsection
