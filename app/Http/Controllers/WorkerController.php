@@ -46,7 +46,7 @@ class WorkerController extends Controller
         non funziona con validation BadMethodCallException
         Method App\Http\Controllers\WorkerController::validationRules does not exist. 
         */
-        /* $request->validate($this->validationRules()); */
+        $request->validate($this->validationRules());
 
         //save new department on database
         $worker = new Worker();
@@ -95,7 +95,7 @@ class WorkerController extends Controller
     {
         $data = $request->all();
         //validation
-        /* $request->validate($this->validationRules($worker->id)); */
+        $request->validate($this->validationRules($worker->id));
         //dd($data);
         $update = $worker->update($data);
 
@@ -120,5 +120,23 @@ class WorkerController extends Controller
         if ($deleted) {
             return redirect()->route('workers.index')->with('deleted', $ref);
         }
+    }
+
+    /* 
+        Define validation rules
+    */
+    private function validationRules($id = null){
+        return [
+            'name' => [
+            'required',
+            'max:25',
+            Rule::unique('departments')->ignore($id),
+            ],
+
+            'gender' => 'required',
+            'descrizione' => '',
+            'age' => 'required',
+
+        ];
     }
 }
